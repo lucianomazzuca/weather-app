@@ -1,52 +1,45 @@
+import { useState, useEffect } from 'react';
 import './App.css';
-import img from './sunny_s_cloudy.png'
+import Card from './components/Card';
+import SearchForm from './components/SearchForm';
 
 function App() {
+  const [weather, setWeather] = useState(null);
+  const [search, setSearch] = useState('');
+
+  const api = '405dd38c238a71236d50fdea512d38a6'
+
+  const getWeatherByCity = async (city) => {
+    try {
+      const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}`);
+      const data = await res.json();
+      return data
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleSearchInput = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await getWeatherByCity(search);
+    setWeather(result);
+  }
+
   return (
-    <div className="App min-h-full">
-      <div className="wrapper container mx-auto px-4 min-h-screen flex flex-col items-center">
-
-
-        <div 
-          className="flex flex-col p-5 mt-24 mb-10
-          transform   transition-transform duration-300"
-        >
-          <h1 className="text-5xl mb-8">Weather App</h1>
-          <form action="">
-            <input type="text" placeholder="Enter a city" className="p-2 rounded-md w-full shadow-md outline-none"/>
-          </form>
-        </div>
-
-        <div className="card grid grid-cols-3 gap-3 bg-white p-6 rounded-3xl shadow-xl w-96">
-
-          <div className="text-center col-span-2 flex flex-col justify-between">
-            <h4 className="text-5xl text-center">30°</h4>
-            <h3 className="text-xl col-span-2 text-center">Buenos Aires</h3>
-          </div>
-
-          <div className="text-center mx-auto flex flex-col justify-between">
-            <img src={img} alt="" srcset=""/>
-            <h4 className="text-md">Clear Sky</h4>
-          </div>
-
-          <div className="group ">
-            <h4>Feels like</h4>
-            <p>30°</p>
-          </div>
-
-          <div className="group ">
-            <h4>Max Temp</h4>
-            <p>34°</p>
-          </div>
-
-          <div className="group">
-            <h4>Min Temp</h4>
-            <p>24°</p>
-          </div>
-
-        </div>
-
+    <div className="App min-h-full wrapper container mx-auto px-4 flex flex-col items-center">
+      <div 
+        className="flex flex-col p-5 mt-24 mb-10
+        transform   transition-transform duration-300"
+      >
+        <h1 className="text-5xl mb-8">Weather App</h1>
+        <SearchForm handleSearchInput={handleSearchInput} handleSubmit={handleSubmit} inputValue={search} />
       </div>
+
+      {weather && <Card data={weather} />}
     </div>
   );
 }
