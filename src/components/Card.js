@@ -1,15 +1,17 @@
 import img from '../sunny_s_cloudy.png'
 
 const Card = ({ data }) => {
+  const imgLink = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+
   return (
-    <div className="card grid grid-cols-3 gap-3 bg-white p-6 rounded-3xl shadow-xl w-96">
+    <div className="card grid grid-cols-3 gap-3 bg-white p-6 rounded-3xl shadow-xl w-full xs:w-96">
       <div className="text-center col-span-2 flex flex-col justify-between">
         <h4 className="text-5xl text-center">{ data.main.temp }°</h4>
         <h3 className="text-xl col-span-2 text-center">{ data.name }, { data.sys.country }</h3>
       </div>
 
       <div className="text-center mx-auto flex flex-col justify-between">
-        <img src={img} alt="" />
+        <img src={imgLink} alt="" className="w-16"/>
         <h4 className="text-md">{ data.weather[0].main }</h4>
       </div>
 
