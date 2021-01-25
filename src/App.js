@@ -10,16 +10,24 @@ function App() {
   const [search, setSearch] = useState('');
   const [unit, setUnit] = useState('metric');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const api = '405dd38c238a71236d50fdea512d38a6'
 
   const getWeatherByCity = async (city) => {
     try {
       const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${api}`);
+
+      // Check if the city was found
+      if(res.status === 404){
+        return setError("Couldn't find that city");
+      }
+
+      setError(null);
       const data = await res.json();
       return data
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -69,9 +77,11 @@ function App() {
         <UnitButton unit={unit} changeUnit={handleUnitButton} />
       </div>
 
+      {error && <div>{error}</div>}
+
       {loading && <ClipLoader color={'#FF6B00'} />}
 
-      {weather && <Card data={weather} />}
+      {weather && error==null && <Card data={weather} />}
     </div>
   );
 }
