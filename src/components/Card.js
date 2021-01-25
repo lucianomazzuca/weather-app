@@ -15,17 +15,17 @@ const Card = ({ data }) => {
 
       <div className="group ">
         <h4>Feels like</h4>
-        <p>{ data.main.feels_like }</p>
+        <p>{ data.main.feels_like }°</p>
       </div>
 
       <div className="group ">
         <h4>Max Temp</h4>
-        <p>{ data.main.temp_max }</p>
+        <p>{ data.main.temp_max }°</p>
       </div>
 
       <div className="group">
         <h4>Min Temp</h4>
-        <p>{ data.main.temp_min }</p>
+        <p>{ data.main.temp_min }°</p>
       </div> 
     </div>
   );
