@@ -9,7 +9,7 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [search, setSearch] = useState('');
   const [unit, setUnit] = useState('metric');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const api = '405dd38c238a71236d50fdea512d38a6'
 
@@ -34,7 +34,10 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    updateWeather(search)
+    setLoading(true)
+    setWeather(null)
+    await updateWeather(search)
+    setLoading(false)
   }
 
   const handleUnitButton = (e) => {
@@ -44,17 +47,14 @@ function App() {
     } else {
       setUnit('metric')
     }
-
-    // If a card is displaying, fetch again
-    // if(weather !== null) {
-    //   updateWeather(search)
-    // }
   }
 
   useEffect(() => {
     if(weather !== null){
-      console.log('updating units')
+      setLoading(true)
+      setWeather(null)
       updateWeather(search)
+        .then(res => setLoading(false))
     }
   }, [unit])
 
@@ -69,6 +69,7 @@ function App() {
         <UnitButton unit={unit} changeUnit={handleUnitButton} />
       </div>
 
+      {loading && <ClipLoader color={'#FF6B00'} />}
 
       {weather && <Card data={weather} />}
     </div>
