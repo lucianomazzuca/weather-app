@@ -6,7 +6,7 @@ const SearchForm = ({ handleSearchInput, handleSubmit, inputValue }) => {
       <input
         type="text"
         placeholder="Enter a city"
-        className="p-2 rounded-md w-full shadow-md outline-none"
+        className="p-2 rounded-md w-full shadow-md outline-none focus:shadow-lg"
         onChange={handleSearchInput}
         value={inputValue}
       />
