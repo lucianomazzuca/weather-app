@@ -59,9 +59,9 @@ function App() {
   }, [unit])
 
   return (
-    <div className="App min-h-full wrapper container mx-auto px-4 flex flex-col items-center">
+    <div className="App min-h-full wrapper container mx-auto px-2 flex flex-col items-center">
       <div 
-        className="flex flex-col p-5 mt-24 mb-10
+        className="flex flex-col mt-24 mb-10
         transform   transition-transform duration-300"
       >
         <h1 className="text-5xl mb-8">Weather App</h1>
