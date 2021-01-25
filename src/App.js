@@ -42,6 +42,11 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(search === '') {
+      return setError('You have to enter a city')
+    }
+    
     setLoading(true)
     setWeather(null)
     await updateWeather(search)
