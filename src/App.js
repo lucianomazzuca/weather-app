@@ -73,7 +73,7 @@ function App() {
 
   return (
     <div className="App wrapper">
-      <div className="flex flex-col mt-24 mb-10 justify-center w-full">
+      <div className="flex flex-col mt-8 md:mt-24 mb-10 justify-center w-full">
         <h1 className="title">Weather App</h1>
         
         <SearchForm handleSearchInput={handleSearchInput} handleSubmit={handleSubmit} inputValue={search} />
