@@ -16,7 +16,7 @@ function App() {
 
   const getWeatherByCity = async (city) => {
     try {
-      const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${api}`);
+      const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${api}`);
 
       // Check if the city was found
       if(res.status === 404){
