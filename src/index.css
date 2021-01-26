@@ -16,3 +16,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.wrapper {
+  @apply min-h-full  max-w-screen-xs mx-auto px-2 flex flex-col items-center;
+}
+
+.title {
+  @apply text-5xl text-center mb-8 text-gray-800;
+}
+
+.search-input{
+  @apply p-2 rounded-md w-full shadow-md outline-none focus:shadow-lg;
+}
+
+.search-btn {
+  @apply border-transparent absolute right-2 transform translate-y-2 focus:outline-none;
+}
+
+.card {
+  @apply grid grid-cols-3 gap-3 bg-white p-6 rounded-3xl shadow-xl w-full xs:w-96;
+}

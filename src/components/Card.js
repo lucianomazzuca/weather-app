@@ -4,7 +4,7 @@ const Card = ({ data }) => {
   const imgLink = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
 
   return (
-    <div className="card grid grid-cols-3 gap-3 bg-white p-6 rounded-3xl shadow-xl w-full xs:w-96">
+    <div className="card">
       <div className="text-center col-span-2 flex flex-col justify-between">
         <h4 className="text-5xl text-center">{ data.main.temp }°</h4>
         <h3 className="text-xl col-span-2 text-center">{ data.name }, { data.sys.country }</h3>
@@ -15,12 +15,12 @@ const Card = ({ data }) => {
         <h4 className="text-md">{ data.weather[0].main }</h4>
       </div>
 
-      <div className="group ">
+      <div className="group">
         <h4>Feels like</h4>
         <p>{ data.main.feels_like }°</p>
       </div>
 
-      <div className="group ">
+      <div className="group">
         <h4>Max Temp</h4>
         <p>{ data.main.temp_max }°</p>
       </div>
