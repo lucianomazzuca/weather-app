@@ -72,10 +72,12 @@ function App() {
   }, [unit])
 
   return (
-    <div className="App min-h-full wrapper container max-w-screen-xs mx-auto px-2 flex flex-col items-center">
+    <div className="App wrapper">
       <div className="flex flex-col mt-24 mb-10 justify-center w-full">
-        <h1 className="text-5xl text-center mb-8 text-gray-800">Weather App</h1>
+        <h1 className="title">Weather App</h1>
+        
         <SearchForm handleSearchInput={handleSearchInput} handleSubmit={handleSubmit} inputValue={search} />
+
         <UnitButton unit={unit} changeUnit={handleUnitButton} />
       </div>
 
